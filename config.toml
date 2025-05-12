@@ -10,10 +10,6 @@ title = 'NeuralNest'
   colorScheme = "blue"
   minimalUI = true
   
-  [params.social]
-    twitter = "neuralnest"
-    github = "neuralnest"
-    linkedin = "neuralnest"
 
 [menu]
   [[menu.main]]
