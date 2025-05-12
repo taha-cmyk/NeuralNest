@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }}">
+    <link rel="stylesheet" href="{{ \"css/main.css\" | relURL }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap">
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <style>
+        :root {
+            --primary-color: #0071e3;
+            --secondary-color: #86868b;
+            --background-color: #ffffff;
+            --text-color: #1d1d1f;
+            --light-gray: #f5f5f7;
+            --border-color: #d2d2d7;
+        }
+        
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            line-height: 1.5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        footer {
+            background-color: var(--light-gray);
+            padding: 60px 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .footer-info {
+            max-width: 300px;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 16px;
+        }
+        
+        .footer-description {
+            color: var(--secondary-color);
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+        
+        .footer-links h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            color: var(--secondary-color);
+            font-size: 12px;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="{{ .Site.BaseURL }}" class="logo">{{ .Site.Title }}</a>
+                <div class="nav-links">
+                    {{ range .Site.Menus.main }}
+                    <a href="{{ .URL }}">{{ .Name }}</a>
+                    {{ end }}
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {{ block "main" . }}{{ end }}
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">{{ .Site.Title }}</div>
+                    <p class="footer-description">{{ .Site.Params.description }}</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Pages</h3>
+                    <ul>
+                        {{ range .Site.Menus.main }}
+                        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+                        {{ end }}
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; {{ now.Format "2006" }} {{ .Site.Title }}. All rights reserved.
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    </script>
+</body>
+</html>
