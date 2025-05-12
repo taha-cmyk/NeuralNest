@@ -1,6 +1,6 @@
 ---
 title: "Understanding Large Language Models: A Comprehensive Guide"
-date: 2025-05-12T18:51:00.000Z
+date: 2023-11-12T18:51:00.000Z  # Changed to a past date
 draft: false
 author: AI Researcher
 authorTitle: Founder of AI Researcher
