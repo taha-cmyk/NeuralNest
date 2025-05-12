@@ -15,7 +15,7 @@ Our mission is to make complex AI concepts accessible to everyone, from beginner
 
 ### What We Offer
 
-- **Tutorials**: Step-by-step guides to help you implement AI solutions
+- **Posts**: Step-by-step guides to help you implement AI solutions
 - **News**: The latest developments in AI and technology
 - **Reviews**: Honest assessments of AI tools and platforms
 - **Case Studies**: Real-world applications of AI technologies

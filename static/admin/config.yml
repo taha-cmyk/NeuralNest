@@ -10,7 +10,7 @@ collections:
     label: "Posts" # Used in the UI
     folder: "content/posts" # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
+    slug: "{{slug}}" # Changed from date-based to match other collections
     fields: # The fields for each document
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Date", name: "date", widget: "datetime"}
@@ -18,7 +18,7 @@ collections:
       - {label: "Author", name: "author", widget: "string"}
       - {label: "Author Title", name: "authorTitle", widget: "string"}
       - {label: "Tags", name: "tags", widget: "list"}
-      - {label: "Categories", name: "categories", widget: "list"}
+      - {label: "Categories", name: "categories", widget: "list", default: ["Posts"]}
       - {label: "Image", name: "image", widget: "image", required: false}
       - {label: "Summary", name: "summary", widget: "text"}
       - {label: "Body", name: "body", widget: "markdown"}
